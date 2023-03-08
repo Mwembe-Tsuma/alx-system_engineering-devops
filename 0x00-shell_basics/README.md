@@ -1,1 +1,1 @@
-A script to display absolute path name of the workingn directory
+ls -al .*: Display current directory contents, including hidden files (starting with .)
