@@ -1,4 +1,4 @@
-# Shell variables and expansions
+## Shell variables and expansions
 0. alias ls="rm *" : Create a script that creates an alias.
 1. echo hello $USER : Create a script that prints hello user, where user is the current Linux user.
 2. export PATH=$PATH:/action : Add /action to the PATH. /action should be the last directory the shell looks into when looking for a program.
@@ -17,4 +17,4 @@ The number will be stored in the environment variable NUM.
 14. printf '%x\n' $DECIMAL :  Write a script that converts a number from base 10 to base 16.
 15. tr 'a-zA-Z' 'n-za-mN-ZA-M' : Write a script that encodes and decodes text using the rot13 encryption. Assume ASCII. 
 16. perl -lne 'print if $. % 2 == 1' : Write a script that prints every other line from the input, starting with the first line.
-17.  echo $(printf %o $(($((5#$(echo $WATER | tr 'water' '01234'))) + $((5#$(echo $STIR | tr 'stir.' '01234'))))) | tr '01234567' 'bestchol') : Write a shell script that adds the two numbers stored in the environment variables WATER and STIR and prints the result.
+17. echo $(printf %o $(($((5$(echo $WATER | tr 'water' '01234'))) + $((5$(echo $STIR | tr 'stir.' '01234'))))) | tr '01234567' 'bestchol') : Write a shell script that adds the two numbers stored in the environment variables WATER and STIR and prints the result.
