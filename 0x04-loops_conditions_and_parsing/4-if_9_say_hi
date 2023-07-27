@@ -2,10 +2,10 @@
 # A script to display "Best School" 9 times then Hi
 
 i="0"
-while [ $i -eq 11 ] 
+while [ $i -lt 10 ] 
 do
     echo "Best School"
-    if [ $i -eq 10 ]
+    if [ $i -eq 8 ]
     then echo "Hi"
     fi
     i=$((i+1))
