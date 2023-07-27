@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# A script to display file names without number prefix 
+
+for filename in *
+do
+	echo "$filename" | cut -d "-" -f2-
+done
