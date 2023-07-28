@@ -15,11 +15,11 @@ int infinite_while(void);
 
 int infinite_while(void)
 {
-    while (1)
-    {
-        sleep(1);
-    }
-    return (0);
+	while (1)
+	{
+		sleep(1);
+	}
+	return (0);
 }
 
 /**
@@ -28,7 +28,7 @@ int infinite_while(void)
   *Return: 0 success
   */
 
-int main (void)
+int main(void)
 {
 	char counter = 0;
 	pid_t pid;
