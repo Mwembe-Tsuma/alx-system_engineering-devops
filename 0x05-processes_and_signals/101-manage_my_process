@@ -20,7 +20,16 @@ then
     ./manage_my_process &
     echo $$ > /var/run/my_process.pid
     echo "manage_my_process restarted"
+fi
 
-else
+if [ "$#" -ne 1 ]
+then
     echo "Usage: manage_my_process {start|stop|restart}"
+    exit $?
+fi
+
+if [ "$1" != "start" ] && [ "$1" != "stop" ] && [ "$1" != "restart" ]
+then
+    echo "Usage: manage_my_process {start|stop|restart}"
+    exit $?
 fi
