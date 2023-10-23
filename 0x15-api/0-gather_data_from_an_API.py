@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Python script that, using this REST API, for a given employee ID
+Python script that uses this REST API, foir a given employee ID
 """
 
 import requests
@@ -32,7 +32,7 @@ def get_todo(employee_id):
 
         print(f"Employee {usr_name} is done with tasks({num_tasks}/{tasks}):")
         for task in done_tasks:
-            print(f"\t{task['title']}")
+            print("\t {}".format(task.get('title')))
 
     else:
         print(f"Failed to retrieve TODO list for employee {employee_id}")
