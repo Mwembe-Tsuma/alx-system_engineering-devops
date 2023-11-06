@@ -1,7 +1,7 @@
-![image](https://github.com/Mwembe-Tsuma/alx-system_engineering-devops/assets/49154717/09b02e00-75f3-4e35-ba4f-26e1ac1f7bed)
-
 
 # Postmortem: Web Service Outage on November 6, 2023
+
+![image](https://github.com/Mwembe-Tsuma/alx-system_engineering-devops/assets/49154717/09b02e00-75f3-4e35-ba4f-26e1ac1f7bed)
 
 ## Issue Summary:
 
