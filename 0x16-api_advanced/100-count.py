@@ -3,49 +3,57 @@
 and returns a list containing the titles of all hot articles
 """
 
-import requests
-from collections import defaultdict
+from requests import get
 
 
-def count_words(subreddit, word_list, counts=None, after=None):
-    if counts is None:
-        counts = defaultdict(int)
+def count_words(subreddit, word_list=[], after=None, cleaned_dict=None):
+    temp = []
 
-    url = f"https://www.reddit.com/r/{subreddit}/hot.json"
+    for word in word_list:
+        temp.append(word.casefold())
 
-    if after:
-        url += f"?after={after}"
+    cleaned_word_list = list(dict.fromkeys(temp))
 
-    headers = {'User-Agent': 'MyRedditBot/1.0'}
+    if cleaned_dict is None:
+        cleaned_dict = dict.fromkeys(cleaned_word_list)
 
-    response = requests.get(url, headers=headers)
+    params = {'show': 'all'}
 
-    if response.status_code == 200:
-        try:
-            data = response.json()
-            posts = data['data']['children']
-
-            for post in posts:
-                title = post['data']['title'].lower()
-                words = title.split()
-                for word in word_list:
-                    if word.lower() in words:
-                        counts[word.lower()] += words.count(word.lower())
-
-            after = data['data']['after']
-
-            if after:
-                return count_words(subreddit, word_list, counts, after)
-            else:
-                print_counts(counts)
-                return counts
-
-        except (KeyError, ValueError):
-            return None
-    else:
+    if subreddit is None or not isinstance(subreddit, str):
         return None
 
-def print_count(counts):
-    sorted_count = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
-    for w, count in sorted_count:
-        print(f"{word}: {count}")
+    user_agent = {'User-agent': 'Google Chrome Version 81.0.4044.129'}
+
+    url = 'https://www.r eddit.com/r/{}/hot/.json?after={}'.format(subreddit,
+                                                                  after)
+
+    response = get(url, headers=user_agent, params=params)
+
+    if (response.status_code != 200):
+        return None
+
+    all_data = response.json()
+    raw1 = all_data.get('data').get('children')
+    after = all_data.get('data').get('after')
+
+    if after is None:
+        new = {k: val for k, val in cleaned_dict.items() if val is not None}
+
+        for k in sorted(new.items(), key=lambda x: (-x[1], x[0])):
+            print("{}: {}".format(k[0], k[1]))
+        return None
+
+    for t in raw1:
+        title = t.get('data').get('title')
+
+        split_title = title.split()
+
+        split_title2 = [t.casefold() for t in split_title]
+
+        for j in split_title2:
+            if j in cleaned_dict and cleaned_dict[j] is None:
+                cleaned_dict[j] = 1
+
+            elif j in cleaned_dict and cleaned_dict[j] is not None:
+                cleaned_dict[j] += 1
+    count_words(subreddit, word_list, after, cleaned_dict)
