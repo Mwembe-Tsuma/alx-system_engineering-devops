@@ -6,6 +6,7 @@ and returns a list containing the titles of all hot articles
 import requests
 from collections import defaultdict
 
+
 def count_words(subreddit, word_list, counts=None, after=None):
     if counts is None:
         counts = defaultdict(int)
@@ -45,6 +46,6 @@ def count_words(subreddit, word_list, counts=None, after=None):
         return None
 
 def print_counts(counts):
-    sorted_counts = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
-    for word, count in sorted_counts:
+    sorted_count = sorted(counts.items(), key=lambda item: (-item[1], item[0]))
+    for word, count in sorted_count:
         print(f"{word}: {count}")
