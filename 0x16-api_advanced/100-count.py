@@ -47,7 +47,6 @@ def count_words(subreddit, word_list, counts=None, after=None):
 
 
 def print_counts(counts):
-    """Printing the counts"""
     sorted_counts = sorted(
             counts.items(), key=lambda item: (-item[1], item[0]))
     for word, count in sorted_counts:
