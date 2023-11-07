@@ -3,6 +3,7 @@
 and returns a list containing the titles of all hot articles
 """
 
+
 import requests
 from collections import defaultdict
 
