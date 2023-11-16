@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
-
-# Specify the path to the PID file
+# simple Bash script to reload Gunicorn in a graceful way.
 PID_FILE="/run/hbnb/hbnb.pid"
 
 # Check if the PID file exists
