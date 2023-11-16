@@ -4,7 +4,7 @@
 exec { 'fix-nginx':
   command => 'sed -i "s/15/4096/" /etc/default/nginx',
   path    => '/usr/local/bin/:/bin/',
-  notify  => Exec['nginx-restart'], # Notify the nginx-restart
+  notify  => Exec['nginx-restart'],
 } ->
 
 # Restart Nginx
